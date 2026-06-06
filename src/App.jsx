@@ -19,7 +19,9 @@ function App() {
   const [insights, setInsights] = useState([]);
   const fetchInsights = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/insights");
+      const res = await axios.get(
+        "https://ai-sales-dashboard-api.onrender.com/api/insights",
+      );
 
       setInsights(res.data.insights);
     } catch (error) {
@@ -52,7 +54,9 @@ useEffect(() => {
 
   const fetchLeads = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/leads");
+      const res = await axios.get(
+        "https://ai-sales-dashboard-api.onrender.com/api/leads",
+      );
 
       setLeads(res.data);
 
@@ -71,11 +75,14 @@ useEffect(() => {
     }
 
     try {
-      await axios.post("http://localhost:5000/api/leads", {
-        name,
-        company,
-        status,
-      });
+      await axios.post(
+        "https://ai-sales-dashboard-api.onrender.com/api/leads",
+        {
+          name,
+          company,
+          status,
+        },
+      );
 
    setName("");
    setCompany("");
@@ -89,7 +96,9 @@ useEffect(() => {
 
   const deleteLead = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/leads/${id}`);
+      await axios.delete(
+        `https://ai-sales-dashboard-api.onrender.com/api/leads/${id}`,
+      );
 
       await fetchLeads();
     } catch (error) {
@@ -99,9 +108,12 @@ useEffect(() => {
 
   const updateLeadStatus = async (id, newStatus) => {
     try {
-      await axios.put(`http://localhost:5000/api/leads/${id}`, {
-        status: newStatus,
-      });
+      await axios.put(
+        `https://ai-sales-dashboard-api.onrender.com/api/leads/${id}`,
+        {
+          status: newStatus,
+        },
+      );
 
       await fetchLeads();
     } catch (error) {
