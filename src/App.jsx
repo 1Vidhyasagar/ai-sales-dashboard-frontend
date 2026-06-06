@@ -17,6 +17,15 @@ function App() {
   const [company, setCompany] = useState("");
   const [status, setStatus] = useState("");
   const [insights, setInsights] = useState([]);
+
+  const conversionRate =
+    leads.length > 0
+      ? (
+          (leads.filter((l) => l.status === "Won").length / leads.length) *
+          100
+        ).toFixed(1)
+      : 0;
+
   const fetchInsights = async () => {
     try {
       const res = await axios.get(
@@ -158,9 +167,10 @@ useEffect(() => {
         </div>
 
         <div className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition">
-          <h3 className="text-gray-500">Conversion</h3>
-
-          <p className="text-3xl font-bold">18%</p>
+          <h3 className="text-gray-500">Conversion Rate</h3>
+          <p className="text-3xl font-bold text-purple-600">
+            {conversionRate}%
+          </p>{" "}
         </div>
       </div>
 
